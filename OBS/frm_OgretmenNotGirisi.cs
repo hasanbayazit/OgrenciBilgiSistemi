@@ -50,7 +50,7 @@ namespace OBS
             {
                 lessonID = Convert.ToInt32(sqlDataRead["id"]);
             }
-            sqlDataAdap = new SqlDataAdapter("SELECT obs_Students.id, studentName, studentSurname, lessonName, sinavNotu1, sinavNotu2, sinavNotu3, sozluNotu1, sozluNotu2, sozluNotu3, projeNotu1, projeNotu2, performansNotu1, performansNotu2 FROM obs_Students LEFT JOIN obs_Grades ON obs_Grades.studentID = obs_Students.id LEFT JOIN obs_Lessons ON obs_Grades.lessonID = obs_Lessons.id WHERE obs_Students.class=" + cmb_Sinif.SelectedItem+"", con.connect());
+            sqlDataAdap = new SqlDataAdapter("SELECT obs_Students.id, studentName, studentSurname, lessonName, sinavNotu1, sinavNotu2, sinavNotu3, sozluNotu1, sozluNotu2, sozluNotu3, projeNotu1, projeNotu2, performansNotu1, performansNotu2 FROM obs_Students LEFT JOIN obs_Grades ON obs_Grades.studentID = obs_Students.id LEFT JOIN obs_Lessons ON obs_Grades.lessonID = obs_Lessons.id WHERE obs_Students.class=" + cmb_Sinif.SelectedItem + " AND obs_Grades.teacherID=" + userIDAktar + "", con.connect());
             dataSet = new DataSet();
             sqlDataAdap.Fill(dataSet, "Ogrenci");
             dataGrid_List.DataSource = dataSet.Tables["Ogrenci"];
