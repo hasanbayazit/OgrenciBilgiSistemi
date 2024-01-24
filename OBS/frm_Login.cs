@@ -14,9 +14,10 @@ namespace OBS
     public partial class frm_Login : Form
     {
 
-        SqlConnection sqlConn;
+        SQLConnect conn = new SQLConnect();
         SqlDataAdapter sqlDataAdap;
         SqlDataReader sqlDataRead;
+        int userID;
 
         public string user = "";
         public frm_Login()
@@ -63,24 +64,38 @@ namespace OBS
 
             //Giriş yapan kullanıcıya göre SQL Sorgusu hazırlanıyor.
             if (user == "Öğretmen")
-                sorgu = "Select * From obs_Users WHERE username=@userID AND password=@password AND ogretmenMi=1";
+                sorgu = "Select * From obs_Teachers WHERE username=@userID AND password=@password";
             else if (user == "Öğrenci")
-                sorgu = "Select * From obs_Users WHERE username=@userID AND password=@password";
+                sorgu = "Select * From obs_Students WHERE username=@userID AND password=@password";
 
-            sqlConn = new SqlConnection("Server=localhost;Initial Catalog = OBS; Integrated Security = SSPI");
-            SqlCommand cmd = new SqlCommand(sorgu, sqlConn);
+            SqlCommand cmd = new SqlCommand(sorgu, conn.connect());
             cmd.Parameters.AddWithValue("@userID", txt_KullaniciNumarasi.Text);
             cmd.Parameters.AddWithValue("@password", txt_Sifre.Text);
-            sqlConn.Open();
             sqlDataRead = cmd.ExecuteReader();
 
             //Girişin başarılı ya da başarısız olması durumlarına göre ekrana bilgi mesajı.
             if (sqlDataRead.Read())
-                MessageBox.Show("Giriş başarılı!");
+            {
+                userID = Convert.ToInt32(sqlDataRead["id"]);
+                if (user == "Öğretmen")
+                {
+                    frm_OgretmenNotGirisi frm = new frm_OgretmenNotGirisi();
+                    frm.userIDAktar = userID;
+                    this.Hide();
+                    frm.ShowDialog();
+                }
+                else if (user == "Öğrenci")
+                {
+                    frm_OgrenciBilgiEkrani frm = new frm_OgrenciBilgiEkrani();
+                    frm.userIDAktar = userID;
+                    this.Hide();
+                    frm.ShowDialog();
+                }
+            }
             else
                 MessageBox.Show(user + " numaranızı ve şifrenizi kontrol ediniz.");
 
-            sqlConn.Close();
+            conn.connect().Close();
         }
     }
 }
