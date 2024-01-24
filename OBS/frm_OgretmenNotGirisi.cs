@@ -15,7 +15,7 @@ namespace OBS
     public partial class frm_OgretmenNotGirisi : Form
     {
         public int userIDAktar;
-        int studentID;
+        int studentID, lessonID;
         SQLConnect con = new SQLConnect();
         SqlDataAdapter sqlDataAdap;
         SqlDataReader sqlDataRead;
@@ -40,7 +40,13 @@ namespace OBS
         private void cmb_Brans_SelectedIndexChanged(object sender, EventArgs e)
         {
             dataGrid_List.DataSource = null;
-            sqlDataAdap = new SqlDataAdapter("SELECT id,studentName,studentSurname,exam,grades FROM obs_Students WHERE class=" + cmb_Sinif.SelectedItem + "", con.connect());
+            sqlCom = new SqlCommand("SELECT id FROM obs_Lessons WHERE lessonName='" + cmb_Brans.SelectedItem + "' AND classID=" + cmb_Sinif.SelectedItem + "", con.connect());
+            sqlDataRead = sqlCom.ExecuteReader();
+            while (sqlDataRead.Read())
+            {
+                lessonID = Convert.ToInt32(sqlDataRead["id"]);
+            }
+            sqlDataAdap = new SqlDataAdapter("SELECT obs_Students.id, studentName, studentSurname, lessonName, sinavNotu1, sinavNotu2, sinavNotu3, sozluNotu1, sozluNotu2, sozluNotu3, projeNotu1, projeNotu2, performansNotu1, performansNotu2 FROM obs_Grades INNER JOIN obs_Students ON obs_Grades.studentID = obs_Students.id INNER JOIN obs_Lessons ON obs_Grades.lessonID = obs_Lessons.id WHERE obs_Students.class = " + cmb_Sinif.SelectedItem + " AND obs_Grades.teacherID=" + userIDAktar + "", con.connect());
             dataSet = new DataSet();
             sqlDataAdap.Fill(dataSet, "Ogrenci");
             dataGrid_List.DataSource = dataSet.Tables["Ogrenci"];
@@ -83,7 +89,7 @@ namespace OBS
             string colName = dataGrid_List.Columns[dataGrid_List.CurrentCell.ColumnIndex].HeaderText.ToString();
             int cellValue = Convert.ToInt32(dataGrid_List.SelectedCells[0].Value);
 
-            sqlCom = new SqlCommand("UPDATE obs_Students SET " + colName + "=" + cellValue + " WHERE id=" + studentID + "",con.connect());
+            sqlCom = new SqlCommand("UPDATE obs_Grades SET " + colName + "=" + cellValue + " WHERE studentID=" + studentID + " AND teacherID=" + userIDAktar + " AND lessonID=" + lessonID + "", con.connect());
             sqlCom.ExecuteNonQuery();
             con.connect().Close();
 
