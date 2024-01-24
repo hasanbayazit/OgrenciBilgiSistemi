@@ -33,6 +33,12 @@
             this.cmb_Brans = new System.Windows.Forms.ComboBox();
             this.cmb_Sinif = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btn_OgrListele = new System.Windows.Forms.Button();
+            this.btn_OgrKaydet = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_List)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,7 +52,6 @@
             this.dataGrid_List.Size = new System.Drawing.Size(1215, 372);
             this.dataGrid_List.TabIndex = 0;
             this.dataGrid_List.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_List_CellClick);
-            this.dataGrid_List.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_List_CellEndEdit);
             this.dataGrid_List.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_List_CellValueChanged);
             // 
             // label1
@@ -90,12 +95,78 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Sınıf Seçiniz:";
             // 
+            // btn_OgrListele
+            // 
+            this.btn_OgrListele.Location = new System.Drawing.Point(12, 444);
+            this.btn_OgrListele.Name = "btn_OgrListele";
+            this.btn_OgrListele.Size = new System.Drawing.Size(120, 23);
+            this.btn_OgrListele.TabIndex = 5;
+            this.btn_OgrListele.Text = "Öğrencileri Listele";
+            this.btn_OgrListele.UseVisualStyleBackColor = true;
+            this.btn_OgrListele.Click += new System.EventHandler(this.btn_OgrListele_Click);
+            // 
+            // btn_OgrKaydet
+            // 
+            this.btn_OgrKaydet.Location = new System.Drawing.Point(138, 444);
+            this.btn_OgrKaydet.Name = "btn_OgrKaydet";
+            this.btn_OgrKaydet.Size = new System.Drawing.Size(120, 23);
+            this.btn_OgrKaydet.TabIndex = 6;
+            this.btn_OgrKaydet.Text = "Öğrencileri Kaydet";
+            this.btn_OgrKaydet.UseVisualStyleBackColor = true;
+            this.btn_OgrKaydet.Click += new System.EventHandler(this.btn_OgrKaydet_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.AutoCompleteCustomSource.AddRange(new string[] {
+            "9",
+            "10",
+            "11",
+            "12"});
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(93, 473);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 10;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(17, 476);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(67, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Sınıf Seçiniz:";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(93, 500);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(15, 503);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Ders Seçiniz: ";
+            // 
             // frm_OgretmenNotGirisi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1239, 450);
+            this.ClientSize = new System.Drawing.Size(1239, 618);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.btn_OgrKaydet);
+            this.Controls.Add(this.btn_OgrListele);
             this.Controls.Add(this.cmb_Sinif);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmb_Brans);
@@ -117,5 +188,11 @@
         private System.Windows.Forms.ComboBox cmb_Brans;
         private System.Windows.Forms.ComboBox cmb_Sinif;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btn_OgrListele;
+        private System.Windows.Forms.Button btn_OgrKaydet;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label4;
     }
 }
