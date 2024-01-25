@@ -4,6 +4,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace OBS
 {
@@ -11,7 +13,7 @@ namespace OBS
     {
         public SqlConnection connect()
         {
-            SqlConnection conn = new SqlConnection("server=localhost; Initial Catalog=OBS;Integrated Security=SSPI");
+            SqlConnection conn = new SqlConnection("Server=servername;Database=db;User Id=user;Password=pwd");
             conn.Open();
             return conn;
         }

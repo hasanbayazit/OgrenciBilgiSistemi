@@ -9,6 +9,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace OBS
 {
@@ -22,6 +24,10 @@ namespace OBS
         SqlCommand sqlCom;
         DataTable dataTable;
         DataSet dataSet;
+
+        //MySqlDataAdapter sqlDataAdap;
+        //MySqlDataReader sqlDataRead;
+        //MySqlCommand sqlCom;
 
         public frm_OgretmenNotGirisi()
         {

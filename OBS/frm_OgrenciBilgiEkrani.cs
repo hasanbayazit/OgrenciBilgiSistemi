@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +20,9 @@ namespace OBS
         SqlDataAdapter sqlDataAdap;
         SqlDataReader sqlDataRead;
         SqlCommand sqlCom;
+        //MySqlDataAdapter sqlDataAdap;
+        //MySqlDataReader sqlDataRead;
+        //MySqlCommand sqlCom;
         DataTable dataTable;
         DataSet dataSet;
 

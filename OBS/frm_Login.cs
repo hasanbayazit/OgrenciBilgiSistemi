@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 namespace OBS
 {
@@ -17,6 +18,9 @@ namespace OBS
         SQLConnect conn = new SQLConnect();
         SqlDataAdapter sqlDataAdap;
         SqlDataReader sqlDataRead;
+
+        //MySqlDataAdapter sqlDataAdap;
+        //MySqlDataReader sqlDataRead;
         int userID;
 
         public string user = "";
